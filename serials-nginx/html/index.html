@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+          * {
+            font-size: 18px;
+          }
+            .item {
+                max-width: 230px;
+            }
+          th {
+            font-size: 25px;
+          }
+          fieldset {
+            width:600px;
+          }
+        </style>
+    </head>
+<body>
+  <center>
+    <h1>Serials</h1>
+    <h2>Welcome to our website!</h2>
+    <h3>Here you can get information about the serials you have choses</h3>
+    <hr><br>
+  <div>
+    <p>Serials on our site<!--#include virtual="/serials/titles"--></p>
+    <p>Number of episodes:<!--#include virtual="/serials/quanEpisodes"--></p>
+    <p>Producer:<!--#include virtual="/serials/producer"--></p>
+    <p>Actors:<!--#include virtual="/serials/actors"--></p>
+  </div>
+    <div id="Profit"></div>
+    <p>Profit is: <!--#include virtual="app/rnum"-->  thousand dollars</p>
+    <hr color="black" width="50%" />
+    <h3>Oscar nominees:</h3>
+    <h4>Best Serials</h4>
+  <table>
+    <!--#include virtual="app/Oscar"-->
+  </table>
+ </center>
+</body>
+<template id="template">
+  <style type="text/css">
+     span {
+        margin: 5px;
+     } 
+  </style> 
+  <div style="margin: 0; padding: 0;">
+      {{#each profit}}
+      <form>
+        <fieldset>
+      <input type="date" name="date">
+    </fieldset>
+      </form>
+      {{/each}}
+  </div>
+</template>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.js"></script>
+<script>
+    var template = document.getElementById('template').innerHTML;
+    var renderAuthors = Handlebars.compile(template);
+    document.getElementById('Profit').innerHTML = renderAuthors({profit: [{}]});
+</script>
+<script>
+  document.getElementById("date").innerHTML = Date();
+</script>
+</html>
